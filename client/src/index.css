@@ -1,0 +1,222 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* React-Toastify polish */
+.Toastify__toast-container {
+    z-index: 70;
+}
+
+.Toastify__toast {
+    margin-bottom: 0.75rem;
+}
+
+.Toastify__toast-body {
+    min-width: 0;
+}
+
+.Toastify__toast-icon {
+    flex-shrink: 0;
+    width: 20px;
+    margin-inline-end: 0.625rem;
+    margin-top: 0.0625rem;
+}
+
+@media (max-width: 480px) {
+    .Toastify__toast-container {
+        padding: 0;
+    }
+}
+
+/* ── React-Toastify base ───────────────────────────────────── */
+
+
+@layer base {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply font-sans antialiased;
+        font-size: 15px;
+        line-height: 1.6;
+        @apply bg-slate-50 text-slate-800;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display font-bold leading-tight;
+    }
+
+    img {
+        @apply max-w-full;
+    }
+}
+
+@layer components {
+
+    /* ── Buttons ─────────────────────────────────────────────── */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none;
+    }
+
+    .btn-primary {
+        @apply btn bg-primary-800 text-white hover:bg-primary-700 active:bg-primary-900 focus:ring-primary-800 active:scale-[0.98];
+    }
+
+    .btn-secondary {
+        @apply btn border border-primary-800 text-primary-800 hover:bg-primary-50 focus:ring-primary-800;
+    }
+
+    .btn-ghost {
+        @apply btn text-slate-600 hover:bg-slate-100 focus:ring-slate-300;
+    }
+
+    .btn-danger {
+        @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+    }
+
+    .btn-success {
+        @apply btn bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-xs;
+    }
+
+    .btn-lg {
+        @apply px-6 py-3.5 text-base;
+    }
+
+    .btn-icon {
+        @apply p-2 rounded-lg;
+    }
+
+    /* ── Form ────────────────────────────────────────────────── */
+    .input {
+        @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 transition focus:outline-none focus:ring-2 focus:ring-primary-800 focus:border-transparent disabled:bg-slate-50 disabled:cursor-not-allowed;
+    }
+
+    .label {
+        @apply block text-sm font-medium text-slate-700 mb-1.5;
+    }
+
+    .field {
+        @apply flex flex-col gap-0.5;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────── */
+    .card {
+        @apply bg-white rounded-xl border border-slate-200 shadow-sm;
+    }
+
+    .card-hover {
+        @apply card hover:border-primary-800/30 hover:shadow-md transition-all duration-200;
+    }
+
+    /* ── Status badges ───────────────────────────────────────── */
+    .badge-new {
+        @apply bg-slate-100 text-slate-700
+    }
+
+    .badge-in_review {
+        @apply bg-amber-100 text-amber-800
+    }
+
+    .badge-in_progress {
+        @apply bg-blue-100 text-blue-800
+    }
+
+    .badge-resolved {
+        @apply bg-emerald-100 text-emerald-800
+    }
+
+    .badge-rejected {
+        @apply bg-red-100 text-red-700
+    }
+
+    /* ── Page scaffolding ────────────────────────────────────── */
+    .page-wrap {
+        @apply space-y-5 animate-fade-in;
+    }
+
+    .page-title {
+        @apply font-display text-2xl font-bold text-slate-900
+    }
+
+    .page-sub {
+        @apply text-slate-500 text-sm mt-0.5;
+    }
+
+    /* ── Skeleton ────────────────────────────────────────────── */
+    .skeleton {
+        @apply bg-slate-200 animate-pulse rounded;
+    }
+
+    /* ── Scrollbar ───────────────────────────────────────────── */
+    .scroll-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #475569 transparent;
+    }
+
+    .scroll-thin::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    .scroll-thin::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .scroll-thin::-webkit-scrollbar-thumb {
+        @apply bg-slate-400 rounded-full;
+    }
+
+    .sidebar-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* ── Vote button animation ───────────────────────────────── */
+    .upvote-active {
+        animation: pop 0.15s ease-out;
+    }
+}
+
+/* ── Leaflet z-index fix ─────────────────────────────────────── */
+.leaflet-container {
+    border-radius: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    z-index: 1 !important;
+}
+
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+    z-index: 1 !important;
+}
+
+.leaflet-control {
+    z-index: 2 !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 10px !important;
+}
