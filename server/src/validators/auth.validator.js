@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const registerSchema = z.object({
   body: z.object({
@@ -8,7 +8,7 @@ export const registerSchema = z.object({
   }),
   params: z.object({}).optional(),
   query: z.object({}).optional(),
-});
+})
 
 export const loginSchema = z.object({
   body: z.object({
@@ -17,4 +17,4 @@ export const loginSchema = z.object({
   }),
   params: z.object({}).optional(),
   query: z.object({}).optional(),
-});
+})

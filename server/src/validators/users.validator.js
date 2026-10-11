@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const updateProfileSchema = z.object({
   body: z
@@ -8,10 +8,10 @@ export const updateProfileSchema = z.object({
       address: z.string().max(250).optional(),
       bio: z.string().max(500).optional(),
     })
-    .refine((value) => Object.keys(value).length > 0, "At least one field is required"),
+    .refine((value) => Object.keys(value).length > 0, 'At least one field is required'),
   params: z.object({}).optional(),
   query: z.object({}).optional(),
-});
+})
 
 export const changePasswordSchema = z.object({
   body: z.object({
@@ -20,4 +20,4 @@ export const changePasswordSchema = z.object({
   }),
   params: z.object({}).optional(),
   query: z.object({}).optional(),
-});
+})

@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from 'zod'
 
-const objectIdRegex = /^[0-9a-fA-F]{24}$/;
+const objectIdRegex = /^[0-9a-fA-F]{24}$/
 
 export const searchQuerySchema = z.object({
   body: z.object({}).optional(),
@@ -9,13 +9,13 @@ export const searchQuerySchema = z.object({
     query: z.string().optional(),
     category: z.string().optional(),
     status: z.string().optional(),
-    sort: z.enum(["relevance", "newest", "oldest", "upvotes"]).optional(),
+    sort: z.enum(['relevance', 'newest', 'oldest', 'upvotes']).optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
     page: z.string().optional(),
     limit: z.string().optional(),
   }),
-});
+})
 
 export const suggestionsQuerySchema = z.object({
   body: z.object({}).optional(),
@@ -23,7 +23,7 @@ export const suggestionsQuerySchema = z.object({
   query: z.object({
     q: z.string().optional(),
   }),
-});
+})
 
 export const createSavedSearchSchema = z.object({
   body: z.object({
@@ -34,7 +34,7 @@ export const createSavedSearchSchema = z.object({
   }),
   params: z.object({}).optional(),
   query: z.object({}).optional(),
-});
+})
 
 export const deleteSavedSearchSchema = z.object({
   body: z.object({}).optional(),
@@ -42,4 +42,4 @@ export const deleteSavedSearchSchema = z.object({
     id: z.string().regex(objectIdRegex),
   }),
   query: z.object({}).optional(),
-});
+})
