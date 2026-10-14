@@ -11,8 +11,8 @@ const isProd = env.nodeEnv === 'production'
 function tokenCookieOptions(maxAgeSec) {
   return {
     httpOnly: true,
-    sameSite: isProd ? 'none' : 'lax',
-    secure: isProd,
+    sameSite: env.cookieSameSite,
+    secure: isProd || env.cookieSameSite === 'none',
     ...(maxAgeSec ? { maxAge: maxAgeSec * 1000 } : {}),
   }
 }

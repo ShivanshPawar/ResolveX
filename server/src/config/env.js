@@ -2,6 +2,11 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+const cookieSameSite = (process.env.COOKIE_SAME_SITE || 'lax').toLowerCase()
+if (!['lax', 'strict', 'none'].includes(cookieSameSite)) {
+  throw new Error('COOKIE_SAME_SITE must be one of: lax, strict, none')
+}
+
 const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: Number(process.env.PORT || 5000),
@@ -13,6 +18,7 @@ const env = {
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
   jwtAccessExpires: process.env.JWT_ACCESS_EXPIRES || '24h',
   jwtRefreshExpires: process.env.JWT_REFRESH_EXPIRES || '7d',
+  cookieSameSite,
   imagekitPublicKey: process.env.IMAGEKIT_PUBLIC_KEY,
   imagekitPrivateKey: process.env.IMAGEKIT_PRIVATE_KEY,
   imagekitUrlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
