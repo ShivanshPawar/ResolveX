@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import express from 'express'
 import cookieParser from 'cookie-parser'
@@ -18,14 +19,24 @@ app.use(...commonMiddlewares)
 // All API routes
 app.use('/api/v1', apiRoutes)
 
-// In production: serve the built React client and handle SPA routing
-if (process.env.NODE_ENV === 'production') {
-  const clientDist = path.resolve(__dirname, '../../client/dist')
+// Serve the SPA only when this process was deployed with its built client.
+// A separately deployed API service must still run with NODE_ENV=production.
+const clientDist = path.resolve(__dirname, '../../client/dist')
+const clientEntry = path.join(clientDist, 'index.html')
+
+if (process.env.NODE_ENV === 'production' && existsSync(clientEntry)) {
   app.use(express.static(clientDist))
   app.get(/^(?!\/api).*/, (_req, res) => {
-    res.sendFile(path.join(clientDist, 'index.html'))
+    res.sendFile(clientEntry)
   })
 } else {
+  app.get('/', (_req, res) => {
+    res.json({
+      success: true,
+      message: 'ResolveX API is running',
+      health: '/api/v1/health',
+    })
+  })
   app.use(notFoundHandler)
 }
 

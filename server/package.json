@@ -4,10 +4,14 @@
   "description": "ResolveX MERN backend API",
   "type": "module",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=22.0.0 <23.0.0"
+  },
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "seed:admin": "node src/scripts/seedAdmin.js",
+    "reset:password": "node src/scripts/resetPassword.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --ignore-path ../.prettierignore --write .",

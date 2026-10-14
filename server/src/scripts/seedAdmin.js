@@ -20,9 +20,10 @@ async function seedAdmin() {
   if (existing) {
     existing.role = 'admin'
     existing.fullName = adminName
+    existing.passwordHash = await bcrypt.hash(adminPassword, 12)
     await existing.save()
 
-    console.log(`Updated existing user to admin: ${existing.email}`)
+    console.log(`Updated existing admin user and reset password: ${existing.email}`)
     process.exit(0)
   }
 

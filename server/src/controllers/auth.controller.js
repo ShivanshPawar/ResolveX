@@ -1,11 +1,12 @@
 import bcrypt from 'bcryptjs'
 import { StatusCodes } from 'http-status-codes'
+import env from '../config/env.js'
 import User from '../models/User.js'
 import ApiError from '../utils/ApiError.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../utils/tokens.js'
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = env.nodeEnv === 'production'
 
 function tokenCookieOptions(maxAgeSec) {
   return {
